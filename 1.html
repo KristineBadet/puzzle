@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Gate</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #1a1a2e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+        }
+        input {
+            width: 500px;
+        }
+        button {
+            background-color: #e94560;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff2e63;
+        }
+        .box {
+            background-color: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        h2 {
+            color: #fddb3a;
+        }
+    </style>
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && event.shiftKey && event.key === "I") {
+                event.preventDefault();
+                alert("Disabled!");
+            }
+        });
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+            alert("Right-click is disabled!");
+        });
+        
+        function disableBackButton() {
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+        }
+    </script>
+</head>
+<body onload="disableBackButton()">
+    <div class="container">
+        <div class="box">
+            <h2>Enter the Secret Code</h2>
+            <input type="text" id="codeInput" placeholder="Enter code">
+            <button onclick="checkCode()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const correctCode = "A1bC2dE3fG4hI5jK6mN7pQ8rT";
+
+        function checkCode() {
+            const enteredCode = document.getElementById("codeInput").value;
+            if (enteredCode === correctCode) {
+                window.location.href = "logic1.html"; // Redirects to the logic question page
+            } else {
+                alert("Incorrect code! Try again.");
+            }
+        }
+    </script>
+</body>
+</html>
